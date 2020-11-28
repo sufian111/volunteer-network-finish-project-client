@@ -1,0 +1,41 @@
+.logo {
+  margin: 32px auto;
+  width: 230px;
+}
+
+.form-signup {
+  width: 520px;
+  border: 1px solid #ababab;
+  margin: 0px auto;
+  border-radius: 5px;
+}
+
+.form-signup form {
+  padding: 32px;
+}
+
+.form-signup h4 {
+  margin: 0 0 22px 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+.form-signup .MuiInputBase-root {
+  width: 100%;
+}
+
+.form-signup .MuiFormControl-root {
+  display: block;
+  margin: 18px 0;
+}
+
+.form-signup label {
+  color: #000;
+  font-size: 16px;
+}
+
+@media (max-width: 1280px) {
+  .form-signup {
+    width: 90%;
+  }
+}
