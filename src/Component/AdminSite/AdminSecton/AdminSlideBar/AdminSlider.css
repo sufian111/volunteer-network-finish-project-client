@@ -1,0 +1,42 @@
+.sidbar {
+  background: #fff;
+  width: 18%;
+  min-height: 100vh;
+  padding: 0 0 0 2%;
+  float: left;
+  overflow: hidden;
+}
+
+.admin-logo {
+  width: 230px;
+  padding-top: 28px;
+}
+
+.icon {
+  width: 18px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.sidbar ul {
+  padding-top: 50px;
+}
+
+.sidbar li {
+  margin: 25px 0;
+}
+
+.sidbar li a {
+  font-size: 16px;
+  color: #111111;
+}
+.formtitle {
+  width: 80%;
+  background: #fff;
+  padding: 28px 0;
+  float: right;
+}
+
+.formtitle h3 {
+  margin-left: 50px;
+}

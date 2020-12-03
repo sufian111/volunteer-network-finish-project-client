@@ -1,0 +1,26 @@
+.MuiInputLabel-root {
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+.addeventform {
+  width: 66%;
+  float: left;
+  background: #fff;
+  margin: 5%;
+  padding: 2%;
+  border-radius: 16px;
+}
+.uploadimage {
+  width: 250px;
+  display: block;
+  margin-bottom: 36px;
+}
+.uploadbtn {
+  color: #0084ff !important;
+  border: 1px solid #0084ff !important;
+  background: #e5f3ff !important;
+}
+.MuiCircularProgress-root {
+  position: absolute;
+}

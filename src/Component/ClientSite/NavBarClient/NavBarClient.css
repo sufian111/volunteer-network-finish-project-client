@@ -1,0 +1,17 @@
+.MuiAppBar-colorPrimary {
+  color: #000 !important;
+  background-color: #f4f7fc !important;
+  padding: 48px 0 !important;
+}
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+.MuiButton-root {
+  margin: 0 14px !important;
+  text-transform: capitalize !important;
+  font-size: 16px !important;
+  letter-spacing: 0.08857em !important;
+}
+.MuiButton-root:hover {
+  background: #3f90fc !important;
+}

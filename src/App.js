@@ -5,6 +5,9 @@ import HomePage from "./HomePage/HomePage";
 import Login from "./Component/Login/Login";
 import RegisterForm from "./Component/RegisterForm/RegisterForm";
 import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
+import ProfileSection from "./Component/ClientSite/ProfileSection/ProfileSection";
+import AddEvent from "./Component/AdminSite/AdminSecton/AdminSlideBar/AddEvent/AddEvent";
+import UserList from "./Component/AdminSite/UserList/UserList";
 
 export const userContext = createContext();
 
@@ -27,9 +30,21 @@ function App() {
             <Login></Login>
           </Route>
 
-          <PrivateRoute path="/register/:id">
+          <Route path="/profile">
+            <ProfileSection></ProfileSection>
+          </Route>
+
+          <Route path="/addEvent">
+            <AddEvent></AddEvent>
+          </Route>
+
+          <Route exact path="/userList">
+            <UserList></UserList>
+          </Route>
+
+          <Route exact path="/register/:id">
             <RegisterForm></RegisterForm>
-          </PrivateRoute>
+          </Route>
 
           <Route path="*">
             <h1>page not found</h1>

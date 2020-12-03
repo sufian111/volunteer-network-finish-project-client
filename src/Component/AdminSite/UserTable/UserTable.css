@@ -1,0 +1,9 @@
+.MuiTableContainer-root {
+  width: 74% !important;
+  padding: 3%;
+  background: transparent !important;
+}
+.MuiButton-startIcon {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}

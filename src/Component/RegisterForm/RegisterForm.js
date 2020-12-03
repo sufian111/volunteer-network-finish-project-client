@@ -65,7 +65,7 @@ const RegisterForm = () => {
     })
       .then((res) => res.json())
       .then((value) => {
-        location.push("/event");
+        location.push("/profile");
       })
       .catch((err) => console.log(err));
   };
