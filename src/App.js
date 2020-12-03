@@ -30,21 +30,21 @@ function App() {
             <Login></Login>
           </Route>
 
-          <Route path="/profile">
+          <PrivateRoute path="/profile">
             <ProfileSection></ProfileSection>
-          </Route>
+          </PrivateRoute>
 
-          <Route path="/addEvent">
+          <PrivateRoute path="/addEvent">
             <AddEvent></AddEvent>
-          </Route>
+          </PrivateRoute>
 
-          <Route exact path="/userList">
+          <PrivateRoute exact path="/userList">
             <UserList></UserList>
-          </Route>
+          </PrivateRoute>
 
-          <Route exact path="/register/:id">
+          <PrivateRoute exact path="/register/:id">
             <RegisterForm></RegisterForm>
-          </Route>
+          </PrivateRoute>
 
           <Route path="*">
             <h1>page not found</h1>

@@ -99,7 +99,7 @@ const NavBarSection = () => {
           color="default"
           className={classes.custombtn}
           style={{ background: "#434141" }}
-          onClick={() => history.push("/admin/userlist")}
+          onClick={() => history.push("/addEvent")}
         >
           admin
         </Button>
@@ -134,7 +134,7 @@ const NavBarSection = () => {
                 color="default"
                 className={classes.custombtn}
                 style={{ background: "#434141" }}
-                onClick={() => history.push("/admin/userlist")}
+                onClick={() => history.push("/addEvent")}
               >
                 admin
               </Button>

@@ -11,10 +11,9 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+
 import React, { useState } from "react";
 import "./AddEventForm.css";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 const AddEventForm = () => {
   const BootstrapInput = withStyles((theme) => ({
@@ -36,73 +35,35 @@ const AddEventForm = () => {
   }))(InputBase);
 
   const [loading, setLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date("10-7-2020"));
+
   const [formData, setFormData] = useState({
     title: "",
     image: "",
-    imageUrl: "",
   });
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    console.log(date);
-  };
-  const handleInputChange = (e) => {
-    if (e.target.name === "image") {
-      let image = e.target.files[0];
-      let imageUrl = image && URL.createObjectURL(image);
-      setFormData({ ...formData, image, imageUrl });
-    }
-    if (e.target.name === "title") {
-      let title = e.target.value;
-      setFormData({ ...formData, title });
-    }
+  const handleChange = (e) => {
+    const newService = { ...formData };
+    newService[e.target.name] = e.target.value;
+    setFormData(newService);
   };
 
-  const formHendelar = (e) => {
-    e.preventDefault();
-    if (formData.image.name && formData.title) {
-      const data = new FormData();
-      data.append("file", formData.image);
-      data.append("upload_preset", "myimage");
+  const handleSubmit = () => {
+    fetch("https://fathomless-tundra-56724.herokuapp.com/addService", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert("add data");
+      });
 
-      setLoading(true);
-      e.target.reset();
-      fetch("https://api.cloudinary.com/v1_1/mehidi/image/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => res.json())
-        .then((v) => {
-          const image = v.secure_url;
-          const title = formData.title;
-          fetch("https://volunteer-network-123.herokuapp.com/addcategory", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ title, image }),
-          })
-            .then((res) => res.json())
-            .then((value) => {
-              setFormData({
-                title: "",
-                image: "",
-                imageUrl: "",
-              });
-              setLoading(false);
-              alert(value.msg);
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log("Error: ", err));
-    } else {
-      alert("input is required");
-    }
+    console.log(formData);
   };
+
   return (
     <>
-      <form className="addeventform" onSubmit={formHendelar}>
+      <form className="addeventform">
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormControl>
@@ -110,32 +71,13 @@ const AddEventForm = () => {
                 Event Title
               </InputLabel>
               <BootstrapInput
-                onBlur={handleInputChange}
+                onBlur={handleChange}
                 name="title"
                 placeholder="Event Title"
                 id="event-title"
                 defaultValue={formData.title}
               />
             </FormControl>
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/dd/yyyy"
-                margin="normal"
-                id="date-picker-inline"
-                label="Date picker inline"
-                value={selectedDate}
-                onChange={handleDateChange}
-                name="date"
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
-              />
-            </MuiPickersUtilsProvider>
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -149,41 +91,27 @@ const AddEventForm = () => {
                 placeholder="Event Description"
                 id="event-description"
                 name="description"
-                onBlur={handleInputChange}
               />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            {/* <TextField name="image" type="file" onChange={handleInputChange}></TextField> */}
-            <Button
-              variant="contained"
-              color="default"
-              startIcon={<CloudUploadIcon />}
-              className="uploadbtn"
-            >
-              Upload image
-              <input
-                accept="image/*"
-                name="image"
-                onChange={handleInputChange}
-                style={{ opacity: "0", position: "absolute", height: "100%" }}
-                type="file"
-              />
-            </Button>
+            {/* <TextField name="image" type="file" onChange={handleChange}></TextField> */}
+            <InputLabel shrink htmlFor="event-title">
+              Image URL
+            </InputLabel>
+            <BootstrapInput
+              onBlur={handleChange}
+              name="image"
+              placeholder="Host your image in imagebb.com and drop the link"
+              id="event-image"
+            />
           </Grid>
           <Grid item xs={12} sm={6}></Grid>
           <Grid item xs={12} sm={6}>
-            {formData.imageUrl && (
-              <img
-                className="uploadimage"
-                src={formData.imageUrl}
-                alt="upload"
-              />
-            )}
             {loading ? (
               <Button
-                type="submit"
+                onClick={handleSubmit}
                 mt={2}
                 disabled
                 variant="contained"
@@ -193,7 +121,12 @@ const AddEventForm = () => {
                 <CircularProgress />
               </Button>
             ) : (
-              <Button type="submit" mt={2} variant="contained" color="primary">
+              <Button
+                onClick={handleSubmit}
+                mt={2}
+                variant="contained"
+                color="primary"
+              >
                 Submit
               </Button>
             )}

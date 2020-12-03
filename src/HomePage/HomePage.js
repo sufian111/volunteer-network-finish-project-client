@@ -30,7 +30,7 @@ const HomePage = () => {
 
   const [CardData, setCardData] = useState();
   useEffect(() => {
-    fetch("https://sufian111.github.io/Demo_Server_Repo/v-showcategory.json")
+    fetch("https://fathomless-tundra-56724.herokuapp.com/service")
       .then((res) => res.json())
       .then((data) => {
         setCardData(data);

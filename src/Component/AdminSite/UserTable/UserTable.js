@@ -19,9 +19,10 @@ const useStyles = makeStyles({
 
 const UserTable = () => {
   const classes = useStyles();
+
   const rowDeleted = (id) => {
     if (window.confirm("Are You Sure?")) {
-      fetch("https://volunteer-network-123.herokuapp.com/userdelete", {
+      fetch("https://localhost:3001/userdelete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -34,10 +35,10 @@ const UserTable = () => {
   };
 
   useEffect(() => {
-    fetch("https://volunteer-network-123.herokuapp.com/registerallpersone")
+    fetch("https://fathomless-tundra-56724.herokuapp.com/order")
       .then((res) => res.json())
       .then((data) => setRows(data));
-  });
+  }, []);
 
   const [rows, setRows] = useState("");
 
@@ -72,7 +73,7 @@ const UserTable = () => {
               </TableRow>
             ))
           ) : (
-            <h1>No Data Found!</h1>
+            <h1>loading....!</h1>
           )}
         </TableBody>
       </Table>

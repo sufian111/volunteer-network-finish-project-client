@@ -24,7 +24,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     setUser({ ...loggedInUser, id });
-    fetch("https://sufian111.github.io/Demo_Server_Repo/v-showcategory.json")
+    fetch("https://fathomless-tundra-56724.herokuapp.com/service")
       .then((res) => res.json())
       .then((data) => {
         setCardData(data);
@@ -54,20 +54,22 @@ const RegisterForm = () => {
   };
 
   const formHendaler = (e) => {
-    e.preventDefault();
-    e.target.reset();
-    fetch("https://volunteer-network-123.herokuapp.com/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((value) => {
-        location.push("/profile");
-      })
-      .catch((err) => console.log(err));
+    location.push("/profile");
+
+    // e.preventDefault();
+    // e.target.reset();
+    // fetch("https://fathomless-tundra-56724.herokuapp.com/addOrder", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(user),
+    // })
+    //   .then((res) => res.json())
+    //   .then((value) => {
+    //     location.push("/profile");
+    //   })
+    //   .catch((err) => console.log(err));
   };
   return (
     <div style={{ textAlign: "center" }}>
@@ -81,7 +83,7 @@ const RegisterForm = () => {
           <TextField
             name="displayName"
             onBlur={inputHendaler}
-            defaultValue={loggedInUser.name}
+            defaultValue={loggedInUser.displayName}
             label="Full Name"
             type="text"
           />
